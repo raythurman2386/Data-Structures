@@ -9,9 +9,10 @@ class Node:
 # TODO: Refactor and handle the length from this class
 # TODO: Refactor LinkedList to pass tests
 class LinkedList:
-    def __init__(self, head=None, tail=None):
+    def __init__(self, head=None, tail=None, len=0):
         self.head = head
         self.tail = tail
+        self.len = len
 
     def get_max(self):
         if self.head is None:
@@ -40,6 +41,7 @@ class LinkedList:
         else:
             new_node.next = self.head
             self.head = new_node
+        self.len += 1
         return self
 
     def add_to_tail(self, data):
@@ -51,6 +53,7 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
 
+        self.len += 1
         return self
 
     # delete an item from the end
@@ -62,10 +65,12 @@ class LinkedList:
             head_value = self.head.value
             self.head = None
             self.tail = None
+            self.len = 0
             return head_value
 
         head_value = self.head.value
         self.head = self.head.next
+        self.len -= 1
         return head_value
 
     def contains(self, value):
