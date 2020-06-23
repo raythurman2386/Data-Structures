@@ -80,9 +80,8 @@ class DoublyLinkedList:
         if self.head is None:
             return
 
-        current_head = self.head
-        self.head = self.head.next
-        self.head.prev = None
+        current_head = self.head.value
+        self.delete(self.head)
         return current_head
 
     """Wraps the given value in a ListNode and inserts it 
