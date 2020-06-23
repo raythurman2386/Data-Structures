@@ -78,13 +78,12 @@ class DoublyLinkedList:
 
     def remove_from_head(self):
         if self.head is None:
-            return self
-        else:
-            new_head = self.head.next
-            old_head = self.head
-            new_head.prev = None
-            self.head = new_head
-            return old_head.value
+            return
+
+        current_head = self.head
+        self.head = self.head.next
+        self.head.prev = None
+        return current_head
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -107,19 +106,34 @@ class DoublyLinkedList:
     Returns the value of the removed Node."""
 
     def remove_from_tail(self):
-        pass
+        if self.tail is None:
+            return
+
+        current_tail = self.tail.value
+        self.delete(self.tail)
+        return current_tail
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
 
     def move_to_front(self, node):
-        pass
+        if node is self.head:
+            return
+
+        old_value = node.value
+        self.delete(node)
+        self.add_to_head(old_value)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
 
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return
+
+        old_value = node.value
+        self.delete(node)
+        self.add_to_tail(old_value)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -129,27 +143,40 @@ class DoublyLinkedList:
         if self.length is 0:
             return self
 
+        # Decrement the length
+        self.length -= 1
+
         # Checks for only one node
         if self.head == self.tail and node == self.head:
             self.head = None
             self.tail = None
 
         # Checks if the node is the current head
-        if self.head == node:
+        elif self.head == node:
             self.head = node.next
             node.delete()
 
         # Checks if the node is the current tail
-        if self.tail == node:
+        elif self.tail == node:
             self.tail = node.prev
             node.delete()
 
         # find the node and delete it in the list
-
-        # Decrement the length
-        self.length -= 1
+        else:
+            node.delete()
 
     """Returns the highest value currently in the list"""
 
     def get_max(self):
-        pass
+        if not self.head:
+            return None
+
+        max_val = self.head.value
+        current_node = self.head
+
+        while current_node:
+            if current_node.value > max_val:
+                max_val = current_node.value
+            current_node = current_node.next
+
+        return max_val
