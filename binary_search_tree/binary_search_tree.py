@@ -23,18 +23,26 @@ class BSTNode:
         # COmpare to the value that we are inserting
 
         # if new_value < self.value
-        # if self.left is taken by a node,
-        # make that node, call insert
-        # self.left.insert(value)
+        if value < self.value:
+            # if self.left is taken by a node,
+            if self.left is not None:
+                # make that node, call insert
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
         # Set the left to the new node
         # self.left = BSTNode(value)
         # if new_value > self.value
-        # if self.right is taken,
+        if value >= self.value:
+            # if self.right is taken,
+            if self.right is not None:
+                self.right.insert(value)
         # make self.right call insert
         # self.right.insert(value)
-        # set the right value to the new node
+            else:
+                # set the right value to the new node
+                self.right = BSTNode(value)
         # self.right = BSTNode(value)
-        pass
 
     # Return True if the tree contains the value
     # False if it does not
@@ -44,18 +52,15 @@ class BSTNode:
 
         # Compare the target to the current value
         # if current value < target
-        found = False
-
-        if self.value < target:
+        if self.value > target:
             # check the left subtree
             if self.left is None:
                 return False
             found = self.left.contains(target)
-
-        if self.value >= target:
-            # check the right subtree
+        else:
             if self.right is None:
                 return False
+
             found = self.right.contains(target)
 
         return found
