@@ -78,14 +78,32 @@ class BSTNode:
         if self.right is None:
             return max_value
 
+        # if self.right > max_value
         if self.right.value > max_value:
+            # recursively run get max on self.right
             max_value = self.right.get_max()
 
         return max_value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # if self is none
+        # return
+        if self.value is None:
+            return
+
+        # run function on current value
+        fn(self.value)
+
+        # check make sure left is not none
+        if self.left is not None:
+            # run foreach on the existing left node
+            self.left.for_each(fn)
+
+        # check make sure right is not none
+        if self.right is not None:
+            # run for_each on existing right node
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
