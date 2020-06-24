@@ -29,20 +29,17 @@ class BSTNode:
                 # make that node, call insert
                 self.left.insert(value)
             else:
+                # Set the left to the new node
                 self.left = BSTNode(value)
-        # Set the left to the new node
-        # self.left = BSTNode(value)
         # if new_value > self.value
         if value >= self.value:
             # if self.right is taken,
             if self.right is not None:
+                # make self.right call insert
                 self.right.insert(value)
-        # make self.right call insert
-        # self.right.insert(value)
             else:
                 # set the right value to the new node
                 self.right = BSTNode(value)
-        # self.right = BSTNode(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -74,8 +71,8 @@ class BSTNode:
         # Set max value to initial node if there is one
         max_value = self.value
         # check if the right node is none
-        # if it is return max value
         if self.right is None:
+            # if it is return max value
             return max_value
 
         # if self.right > max_value
@@ -88,7 +85,6 @@ class BSTNode:
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         # if self is none
-        # return
         if self.value is None:
             return
 
