@@ -9,6 +9,7 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+import sys
 
 
 class BSTNode:
@@ -118,12 +119,48 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # Base case if the node is none
+        if node is None:
+            return
+
+        # using array for time being
+        # don't feel like messing with the imports
+        queue = []
+
+        queue.append(node)
+        while(len(queue) > 0):
+            data = queue.pop(0)
+            print(data.value)
+
+            # Enque the left child
+            if data.left is not None:
+                queue.append(data.left)
+
+            # Enque the right child
+            if data.right is not None:
+                queue.append(data.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # Base case if the node is None
+        if node is None:
+            return
+
+        # using array for time being
+        # don't feel like messing with the imports
+        stack = []
+
+        stack.insert(0, node)
+        while(len(stack) > 0):
+            data = stack.pop(0)
+            print(data.value)
+
+            if data.left is not None:
+                stack.insert(0, data.left)
+
+            if data.right is not None:
+                stack.insert(0, data.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -135,6 +172,7 @@ class BSTNode:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
 
 
 my_tree = BSTNode(1)
@@ -149,4 +187,11 @@ my_tree.insert(12)
 my_tree.insert(7)
 
 # Testing in_order_print
+print('\nIN ORDER Print')
 my_tree.in_order_print(my_tree)
+# Testing bft_print
+print('\nBFT Print')
+my_tree.bft_print(my_tree)
+# Testing dft_print
+print('\nDFT Print')
+my_tree.dft_print(my_tree)
