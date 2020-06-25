@@ -1,5 +1,23 @@
 from doubly_linked_list import DoublyLinkedList
 
+"""
+WHAT IS AN LRU CACHE???
+"""
+"""
+LRU(Least Recently Used) Cache discards the least recently used items first. 
+This algorithm requires keeping track of what was used when, which is 
+expensive if one wants to make sure the algorithm always discards the least recently used item.
+
+General implementations of this technique require keeping "age bits" for cache lines and 
+track the LRU cache line based on age bits
+
+LRU Should support the following operations
+> get - get the value, will always be positive, of the key if the key exists
+> put - set or insert the value if the key is not present.
+    When the cache reaches capacity, it should remove the last item before
+    inserting a new item
+""" 
+
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
