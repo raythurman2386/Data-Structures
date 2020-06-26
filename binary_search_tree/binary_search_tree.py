@@ -151,16 +151,16 @@ class BSTNode:
         # don't feel like messing with the imports
         stack = []
 
-        stack.insert(0, node)
+        stack.append(node)
         while(len(stack) > 0):
-            data = stack.pop(0)
+            data = stack.pop()
             print(data.value)
 
             if data.left is not None:
-                stack.insert(0, data.left)
+                stack.append(data.left)
 
             if data.right is not None:
-                stack.insert(0, data.right)
+                stack.append(data.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
